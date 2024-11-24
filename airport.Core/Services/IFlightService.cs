@@ -12,7 +12,8 @@ namespace airport.Core.Services
         public List<Flight> GetList();
         public Flight GetById(int id);
 
+        public void Add(Flight flight);
 
-
+        public Flight Update(Flight flight);
     }
 }

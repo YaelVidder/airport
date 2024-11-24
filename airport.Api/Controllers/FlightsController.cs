@@ -23,9 +23,9 @@ namespace airport.Controllers
 
 
         [HttpGet]
-        public IEnumerable<Flight> Get()
+        public ActionResult<Flight> Get()
         {
-            return _flightService.GetList();
+            return Ok(_flightService.GetList());
         }
 
         [HttpGet("{id}")]
@@ -41,21 +41,16 @@ namespace airport.Controllers
         [HttpPost]
         public Flight Post([FromBody] Flight value)
         {
-            _flightService.GetList().Add(value);
+            _flightService.Add(value);
             return value;
         }
 
         [HttpPut("{id}")]
-        public Flight Put(int flightId, [FromBody] Flight value)
+        public ActionResult<Flight> Put(int flightId, [FromBody] Flight value)
         {
-            var index = _flightService.GetList().FindIndex( f => f.flightId == flightId);
-            _flightService.GetList()[index].airplanId = value.airplanId;
-            _flightService.GetList()[index].source = value.source;
-            _flightService.GetList()[index].destination = value.destination;
-            _flightService.GetList()[index].status = value.status;
-            _flightService.GetList()[index].takingOffTime = value.takingOffTime;
-            _flightService.GetList()[index].landTime = value.landTime;
-            return _flightService.GetList()[index];
+            if(_flightService.GetById(flightId) == null)
+                    return NotFound();
+            return _flightService.Update(value);
         }
 
         [HttpDelete("{id}")]
