@@ -28,7 +28,7 @@ builder.Services.AddScoped<ILocationService, LocationService>();
 builder.Services.AddScoped<IStatusRepository, StatusRepository>();
 builder.Services.AddScoped<IStatusService, StatusService>();
 
-builder.Services.AddSingleton<DataContext>();
+builder.Services.AddDbContext<DataContext>();
 
 var app = builder.Build();
 
