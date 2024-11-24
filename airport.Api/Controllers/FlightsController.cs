@@ -29,10 +29,14 @@ namespace airport.Controllers
         }
 
         [HttpGet("{id}")]
-        public Flight Get(int flightId)
+        public ActionResult Get(int flightId)
         {
-            return _flightService.GetList().FirstOrDefault( f => f.flightId == flightId );
+            var flight = _flightService.GetById(flightId);
+            if (flight != null)
+                return Ok(flight);
+            return NotFound();
         }
+
 
         [HttpPost]
         public Flight Post([FromBody] Flight value)

@@ -20,5 +20,10 @@ namespace airport.Data.Repositories
         {
             return _context.flights.ToList();
         }
+
+        public Flight GetById(int id)
+        {
+            return _context.flights.FirstOrDefault(x => x.flightId == id);
+        }
     }
 }
