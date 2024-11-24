@@ -18,7 +18,7 @@ namespace airport.Data.Repositories
         }
         public List<Flight> GetAll()
         {
-            return _context.flights;
+            return _context.flights.ToList();
         }
     }
 }

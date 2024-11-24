@@ -1,7 +1,10 @@
-﻿namespace airport.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace airport.Entities
 {
     public class Airplane
     {
+        [Key]
         public int airplanId { get; set; }
         public string airplaneType { get; set; }
 
