@@ -19,7 +19,7 @@ namespace airport.Data.Repositories
         }
         public List<Airplane> GetAll()
         {
-            return _context.airplanes;
+            return _context.airplanes.ToList();
         }
 
         public Airplane GetById(int id)

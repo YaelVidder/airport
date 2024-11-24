@@ -7,7 +7,7 @@ using System.Collections.Generic;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace airport.Controllers
-{ 
+{
 
     [Route("api/[controller]")]
     [ApiController]
@@ -18,41 +18,40 @@ namespace airport.Controllers
 
         public FlightsController(IFlightService flightService)
         {
-            _flightService = flightService;   
+            _flightService = flightService;
         }
 
 
         [HttpGet]
-        public IEnumerable<Flight> Get()
+        public ActionResult<Flight> Get()
         {
-            return _flightService.GetList();
+            return Ok(_flightService.GetList());
         }
 
         [HttpGet("{id}")]
-        public Flight Get(int flightId)
+        public ActionResult Get([FromRoute] int flightId)
         {
-            return _flightService.GetList().FirstOrDefault( f => f.flightId == flightId );
+            var flight = _flightService.GetById(flightId);
+            if (flight != null)
+                return Ok(flight);
+            return NotFound();
         }
+
 
         [HttpPost]
         public ActionResult Post([FromBody] Flight value)
         {
-            _flightService.GetList().Add(value);
-            return value;
+            _flightService.Add(value);
+            return Ok(value);
         }
 
-
         [HttpPut("{id}")]
-        public Flight Put(int flightId, [FromBody] Flight value)
+        public ActionResult<Flight> Put([FromRoute] int flightId, [FromBody] Flight value)
         {
-            var index = _flightService.GetList().FindIndex( f => f.flightId == flightId);
-            _flightService.GetList()[index].airplanId = value.airplanId;
-            _flightService.GetList()[index].source = value.source;
-            _flightService.GetList()[index].destination = value.destination;
-            _flightService.GetList()[index].status = value.status;
-            _flightService.GetList()[index].takingOffTime = value.takingOffTime;
-            _flightService.GetList()[index].landTime = value.landTime;
-            return _flightService.GetList()[index];
+            if (_flightService.GetById(flightId) == null)
+                return NotFound();
+            _flightService.Update(flightId, value);
+            return Ok(value);
         }
 
         [HttpDelete("{id}")]

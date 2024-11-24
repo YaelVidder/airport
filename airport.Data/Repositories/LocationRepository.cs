@@ -18,7 +18,7 @@ namespace airport.Data.Repositories
         }
         public List<Location> GetAll()
         {
-            return _context.locations;
+            return _context.locations.ToList();
         }
 
         public Location GetById(int id)

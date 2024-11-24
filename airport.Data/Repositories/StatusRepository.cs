@@ -18,7 +18,7 @@ namespace airport.Data.Repositories
         }
         public List<Status> GetAll()
         {
-            return _context.statuses;
+            return _context.statuses.ToList();
         }
 
         public Status GetById(int id)

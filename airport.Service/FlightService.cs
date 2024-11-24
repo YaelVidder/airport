@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace airport.Service
 {
-    public class FlightService: IFlightService
+    public class FlightService : IFlightService
     {
         private readonly IFlightRepository _flightRepository;
 
@@ -29,12 +29,17 @@ namespace airport.Service
 
         public void Add(Flight flight)
         {
-           _flightRepository.Add(flight);
+            _flightRepository.Add(flight);
         }
 
-        public Flight Update(Flight flight)
+        public void Update(int id, Flight flight)
         {
-            return _flightRepository.Update(flight);
+            _flightRepository.Update(id, flight);
+        }
+
+        public void Delete(int id)
+        {
+            _flightRepository.Delete(id);
         }
     }
 }
