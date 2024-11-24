@@ -14,6 +14,8 @@ namespace airport.Core.Services
 
         public void Add(Flight flight);
 
-        public Flight Update(Flight flight);
+        public void Update(int id,Flight flight);
+
+        public void Delete(int id);
     }
 }

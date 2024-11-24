@@ -21,5 +21,9 @@ namespace airport.Service
         {
             return _statusRepository.GetAll();
         }
+        public Status GetById(int id)
+        {
+            return _statusRepository.GetById(id);
+        }
     }
 }

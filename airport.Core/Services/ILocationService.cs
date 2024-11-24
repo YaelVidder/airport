@@ -10,5 +10,7 @@ namespace airport.Core.Services
     public interface ILocationService
     {
         public List<Location> GetList();
+        public Location GetById(int id);
+
     }
 }

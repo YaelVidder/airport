@@ -7,7 +7,7 @@ using System.Collections.Generic;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace airport.Controllers
-{ 
+{
 
     [Route("api/[controller]")]
     [ApiController]
@@ -18,7 +18,7 @@ namespace airport.Controllers
 
         public FlightsController(IFlightService flightService)
         {
-            _flightService = flightService;   
+            _flightService = flightService;
         }
 
 
@@ -29,7 +29,7 @@ namespace airport.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult Get(int flightId)
+        public ActionResult Get([FromRoute] int flightId)
         {
             var flight = _flightService.GetById(flightId);
             if (flight != null)
@@ -39,25 +39,29 @@ namespace airport.Controllers
 
 
         [HttpPost]
-        public Flight Post([FromBody] Flight value)
+        public ActionResult Post([FromBody] Flight value)
         {
             _flightService.Add(value);
-            return value;
+            return Ok(value);
         }
 
         [HttpPut("{id}")]
-        public ActionResult<Flight> Put(int flightId, [FromBody] Flight value)
+        public ActionResult<Flight> Put([FromRoute] int flightId, [FromBody] Flight value)
         {
-            if(_flightService.GetById(flightId) == null)
-                    return NotFound();
-            return _flightService.Update(value);
+            if (_flightService.GetById(flightId) == null)
+                return NotFound();
+            _flightService.Update(flightId, value);
+            return Ok(value);
         }
 
         [HttpDelete("{id}")]
-        public void Delete(int flightId)
+        public ActionResult Delete([FromRoute] int id)
         {
-            var index = _flightService.GetList().FindIndex(f => f.flightId == flightId);
-            _flightService.GetList().Remove(_flightService.GetList()[index]);
+            if (_flightService.GetById(id) == null)
+                return NotFound();
+
+            _flightService.Delete(id);
+            return NoContent();
         }
 
     }

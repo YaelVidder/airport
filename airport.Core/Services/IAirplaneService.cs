@@ -10,5 +10,7 @@ namespace airport.Core.Services
     public interface IAirplaneService
     {
         public List<Airplane> GetList();
+
+        public Airplane GetById(int id);
     }
 }

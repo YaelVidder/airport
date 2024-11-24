@@ -10,5 +10,7 @@ namespace airport.Core.Services
     public interface IStatusService
     {
         public List<Status> GetList();
+
+        public Status GetById(int id);
     }
 }

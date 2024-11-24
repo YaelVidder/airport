@@ -20,5 +20,10 @@ namespace airport.Data.Repositories
         {
             return _context.statuses.ToList();
         }
+
+        public Status GetById(int id)
+        {
+            return _context.statuses.FirstOrDefault(s => s.statusId == id);
+        }
     }
 }
