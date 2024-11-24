@@ -10,5 +10,7 @@ namespace airport.Core.Repositories
     public interface IAirplaneRepository
     {
         public List<Airplane> GetAll();
+
+        public Airplane GetById(int id);
     }
 }

@@ -10,5 +10,7 @@ namespace airport.Core.Services
     public interface ICompanyService
     {
         public List<Company> GetList();
+
+        public Company GetById(int id);
     }
 }

@@ -19,16 +19,20 @@ namespace airport.Controllers
     
 
     [HttpGet]
-        public IEnumerable<Location> Get()
+        public ActionResult<Location> Get()
         {
-            return _locationService.GetList();
+            return Ok(_locationService.GetList());
         }
 
         [HttpGet("{id}")]
-        public Location Get(int LocationId)
+        public ActionResult Get([FromRoute]int LocationId)
         {
-            return _locationService.GetList().FirstOrDefault(l => l.LocationId == LocationId);
+            var location = _locationService.GetById(LocationId);
+            if(location != null) 
+                return Ok(location);
+            return NotFound();
         }
+
 
         /*
         [HttpPost]

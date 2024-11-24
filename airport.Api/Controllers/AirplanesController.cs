@@ -1,5 +1,6 @@
 ﻿using airport.Core.Services;
 using airport.Entities;
+using airport.Service;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -17,15 +18,18 @@ namespace airport.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Airplane> Get()
+        public ActionResult<Airplane> Get()
         {
-            return _airplaneService.GetList();
+            return Ok(_airplaneService.GetList());
         }
 
         [HttpGet("{id}")]
-        public Airplane Get(int airplanId)
+        public ActionResult Get([FromRoute] int airplanId)
         {
-            return _airplaneService.GetList().FirstOrDefault(a => a.airplanId == airplanId);
+            var airplane = _airplaneService.GetById(airplanId);
+            if(airplane != null) 
+                return Ok(airplane);
+            return NotFound();
         }
 
         /*

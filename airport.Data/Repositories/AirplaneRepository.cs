@@ -21,5 +21,11 @@ namespace airport.Data.Repositories
         {
             return _context.airplanes;
         }
+
+        public Airplane GetById(int id)
+        {
+            return _context.airplanes.FirstOrDefault(a => a.airplanId == id);
+        }
+
     }
 }

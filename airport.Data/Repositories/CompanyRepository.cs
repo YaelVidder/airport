@@ -20,5 +20,11 @@ namespace airport.Data.Repositories
         {
             return _context.companies;
         }
+
+        public Company GetById(int id)
+        {
+            return _context.companies.FirstOrDefault(c => c.companyId == id);
+        }
+
     }
 }

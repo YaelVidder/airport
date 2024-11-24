@@ -21,5 +21,20 @@ namespace airport.Service
         {
             return _flightRepository.GetAll();
         }
+
+        public Flight GetById(int id)
+        {
+            return _flightRepository.GetById(id);
+        }
+
+        public void Add(Flight flight)
+        {
+           _flightRepository.Add(flight);
+        }
+
+        public Flight Update(Flight flight)
+        {
+            return _flightRepository.Update(flight);
+        }
     }
 }

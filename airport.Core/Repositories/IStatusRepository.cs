@@ -10,5 +10,6 @@ namespace airport.Core.Repositories
     public interface IStatusRepository
     {
         public List<Status> GetAll();
+        public Status GetById(int id);
     }
 }

@@ -9,6 +9,8 @@ namespace airport.Core.Repositories
 {
     public interface ICompanyRepository
     {
-            public List<Company> GetAll();
+        public List<Company> GetAll();
+
+        public Company GetById(int id);
     }
 }

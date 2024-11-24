@@ -35,11 +35,12 @@ namespace airport.Controllers
         }
 
         [HttpPost]
-        public Flight Post([FromBody] Flight value)
+        public ActionResult Post([FromBody] Flight value)
         {
             _flightService.GetList().Add(value);
             return value;
         }
+
 
         [HttpPut("{id}")]
         public Flight Put(int flightId, [FromBody] Flight value)
@@ -55,10 +56,13 @@ namespace airport.Controllers
         }
 
         [HttpDelete("{id}")]
-        public void Delete(int flightId)
+        public ActionResult Delete([FromRoute] int id)
         {
-            var index = _flightService.GetList().FindIndex(f => f.flightId == flightId);
-            _flightService.GetList().Remove(_flightService.GetList()[index]);
+            if (_flightService.GetById(id) == null)
+                return NotFound();
+
+            _flightService.Delete(id);
+            return NoContent();
         }
 
     }

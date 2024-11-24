@@ -11,5 +11,7 @@ namespace airport.Core.Repositories
     {
         public List<Location> GetAll();
 
+        public Location GetById(int id);
+
     }
 }

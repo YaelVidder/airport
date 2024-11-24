@@ -21,5 +21,10 @@ namespace airport.Service
         {
             return _companyRepository.GetAll();
         }
+
+        public Company GetById(int id) 
+        { 
+            return _companyRepository.GetById(id);
+        }
     }
 }
