@@ -9,7 +9,7 @@ namespace airport.Core.Services
 {
     public interface IFlightService
     {
-        public List<Flight> GetList();
+        public IEnumerable<Flight> GetList();
         public Flight GetById(int id);
 
         public void Add(Flight flight);

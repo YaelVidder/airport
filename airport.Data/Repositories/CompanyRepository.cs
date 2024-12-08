@@ -23,7 +23,7 @@ namespace airport.Data.Repositories
 
         public Company GetById(int id)
         {
-            return _context.companies.FirstOrDefault(c => c.companyId == id);
+            return _context.companies.FirstOrDefault(c => c.CompanyId == id);
         }
 
     }

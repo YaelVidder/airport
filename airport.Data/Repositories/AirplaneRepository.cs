@@ -24,7 +24,7 @@ namespace airport.Data.Repositories
 
         public Airplane GetById(int id)
         {
-            return _context.airplanes.FirstOrDefault(a => a.airplanId == id);
+            return _context.airplanes.FirstOrDefault(a => a.AirplanId == id);
         }
 
     }

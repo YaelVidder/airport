@@ -5,25 +5,15 @@ namespace airport.Entities
     public class Flight
     {
         [Key]
-        public int flightId { get; set; }
-        public int airplanId { get; set; }
-        public int source { get; set; }
-        public int destination { get; set; }
-        public int status { get; set; }
-        public DateOnly takingOffTime { get; set; }
-        public DateOnly landTime { get; set; }
-        
-
-        //public Flight(int flightId, int airplanId, int source, int destination, int status, DateOnly takingOffTime, DateOnly landTime)
-        //{
-        //    this.flightId = flightId;
-        //    this.airplanId = airplanId;
-        //    this.source = source;
-        //    this.destination = destination;
-        //    this.status = status;
-        //    this.takingOffTime = takingOffTime;
-        //    this.landTime = landTime;
-        //}
-
+        public int FlightId { get; set; }
+        public int AirplanId { get; set; }
+        public Airplane Airplane { get; set; }
+        public int Source { get; set; }
+        public int Destination { get; set; }
+        public int StatusId { get; set; }
+        public Status status { get; set; }
+        public DateOnly TakingOffTime { get; set; }
+        public DateOnly LandTime { get; set; }
+            
     }
 }

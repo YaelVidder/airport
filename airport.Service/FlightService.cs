@@ -17,7 +17,7 @@ namespace airport.Service
         {
             _flightRepository = flightRepository;
         }
-        public List<Flight> GetList()
+        public IEnumerable<Flight> GetList()
         {
             return _flightRepository.GetAll();
         }

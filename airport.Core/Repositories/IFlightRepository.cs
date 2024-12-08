@@ -9,7 +9,7 @@ namespace airport.Core.Repositories
 {
     public interface IFlightRepository
     {
-        public List<Flight> GetAll();
+        public IEnumerable<Flight> GetAll();
 
         public Flight GetById(int id);
 
