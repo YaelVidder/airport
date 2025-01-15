@@ -1,4 +1,5 @@
 using airport;
+using airport.Core;
 using airport.Core.Repositories;
 using airport.Core.Services;
 using airport.Data.Repositories;
@@ -29,6 +30,8 @@ builder.Services.AddScoped<IStatusRepository, StatusRepository>();
 builder.Services.AddScoped<IStatusService, StatusService>();
 
 builder.Services.AddDbContext<DataContext>();
+
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 var app = builder.Build();
 

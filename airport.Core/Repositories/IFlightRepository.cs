@@ -9,14 +9,14 @@ namespace airport.Core.Repositories
 {
     public interface IFlightRepository
     {
-        public IEnumerable<Flight> GetAll();
+        public Task<IEnumerable<Flight>> GetAllAsync();
 
-        public Flight GetById(int id);
+        public Task<Flight> GetByIdAsync(int id);
 
-        public void Add(Flight flight);
+        public Task AddAsync(Flight flight);
 
-        public void Update(int id, Flight flight);
+        public Task UpdateAsync(int id, Flight flight);
 
-        public void Delete(int id);
+        public Task DeleteAsync(int id);
     }
 }

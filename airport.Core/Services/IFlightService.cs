@@ -9,13 +9,13 @@ namespace airport.Core.Services
 {
     public interface IFlightService
     {
-        public IEnumerable<Flight> GetList();
-        public Flight GetById(int id);
+        public Task <IEnumerable<Flight>> GetListAsync();
+        public Task <Flight> GetByIdAsync(int id);
 
-        public void Add(Flight flight);
+        public Task AddAsync(Flight flight);
 
-        public void Update(int id,Flight flight);
+        public Task UpdateAsync(int id,Flight flight);
 
-        public void Delete(int id);
+        public Task DeleteAsync(int id);
     }
 }

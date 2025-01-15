@@ -19,40 +19,40 @@ namespace airport.Data.Repositories
         {
             _context = context;
         }
-        public IEnumerable<Flight> GetAll()
+        public async Task<IEnumerable<Flight>> GetAllAsync()
         {
-            return _context.flights.ToList();
+            return await _context.flights.ToListAsync();
         }
 
-        public Flight GetById(int id)
+        public async Task<Flight> GetByIdAsync(int id)
         {
-            return _context.flights.Include(x => x.AirplanId)
-                .Include(x => x.StatusId).FirstOrDefault(x => x.FlightId == id);
+            return await _context.flights.Include(x => x.AirplanId)
+                .Include(x => x.StatusId).FirstOrDefaultAsync(x => x.FlightId == id);
         }
 
-        public void Add(Flight flight)
+        public async Task AddAsync(Flight flight)
         {
             _context.flights.Add(flight);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void Update(int id, Flight flight)
+        public async Task UpdateAsync(int id, Flight flight)
         {
             var index = _context.flights.ToList().FindIndex(x => x.FlightId == id);
             if (index != -1)
             {
                 _context.flights.ToList()[index] = flight;
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
-            var flight = GetById(id);
+            var flight = await GetByIdAsync(id);
             if (flight != null)
             {
                 _context.flights.Remove(flight);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
         }
 

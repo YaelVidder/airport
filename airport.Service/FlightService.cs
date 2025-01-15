@@ -17,29 +17,31 @@ namespace airport.Service
         {
             _flightRepository = flightRepository;
         }
-        public IEnumerable<Flight> GetList()
+
+
+        public async Task <IEnumerable<Flight>> GetListAsync()
         {
-            return _flightRepository.GetAll();
+            return await _flightRepository.GetAllAsync();
         }
 
-        public Flight GetById(int id)
+        public async Task <Flight> GetByIdAsync(int id)
         {
-            return _flightRepository.GetById(id);
+            return await _flightRepository.GetByIdAsync(id);
         }
 
-        public void Add(Flight flight)
+        public async Task AddAsync(Flight flight)
         {
-            _flightRepository.Add(flight);
+            await _flightRepository.AddAsync(flight);
         }
 
-        public void Update(int id, Flight flight)
+        public async Task UpdateAsync(int id, Flight flight)
         {
-            _flightRepository.Update(id, flight);
+            await _flightRepository.UpdateAsync(id, flight);
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
-            _flightRepository.Delete(id);
+            await _flightRepository.DeleteAsync(id);
         }
     }
 }
