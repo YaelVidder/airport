@@ -59,12 +59,12 @@ namespace airport.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<Flight>> Put([FromRoute] int flightId, [FromBody] Flight value)
+        public async Task<ActionResult<Flight>> Put([FromRoute] int flightId, [FromBody] FlightPostModel flight)
         {
             if (await _flightService.GetByIdAsync(flightId) == null)
                 return NotFound();
-            await _flightService.UpdateAsync(flightId, value);
-            return Ok(value);
+            await _flightService.UpdateAsync(flightId, _mapper.Map<Flight>(flight));
+            return Ok(flight);
         }
 
         [HttpDelete("{id}")]
