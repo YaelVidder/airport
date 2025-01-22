@@ -14,6 +14,9 @@ namespace airport.Entities
         public Status status { get; set; }
         public DateOnly TakingOffTime { get; set; }
         public DateOnly LandTime { get; set; }
-            
+        
+        public int CompanyId {  get; set; }
+        public Company Company { get; set; }
+
     }
 }

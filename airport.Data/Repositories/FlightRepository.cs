@@ -21,13 +21,14 @@ namespace airport.Data.Repositories
         }
         public async Task<IEnumerable<Flight>> GetAllAsync()
         {
-            return await _context.flights.ToListAsync();
+            return await _context.flights.Include(x => x.AirplanId)
+                .Include(x => x.StatusId).Include(x => x.CompanyId).ToListAsync();
         }
 
         public async Task<Flight> GetByIdAsync(int id)
         {
             return await _context.flights.Include(x => x.AirplanId)
-                .Include(x => x.StatusId).FirstOrDefaultAsync(x => x.FlightId == id);
+                .Include(x => x.StatusId).Include(x => x.CompanyId).FirstOrDefaultAsync(x => x.FlightId == id);
         }
 
         public async Task AddAsync(Flight flight)

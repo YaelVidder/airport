@@ -30,7 +30,7 @@ namespace airport.Controllers
 
 
         [HttpGet]
-        public async Task <ActionResult<Flight>> Get()
+        public async Task <ActionResult<IEnumerable<flightDto>>> Get()
         {
             var flights =  await _flightService.GetListAsync();
             var flightsDto = _mapper.Map<IEnumerable<flightDto>>(flights);
@@ -50,11 +50,11 @@ namespace airport.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] FlightPostModel value)
+        public async Task<ActionResult> Post([FromBody] FlightPostModel flight)
         {
-            var flight = new Flight { AirplanId = value.AirplanId, Destination = value.Destination, FlightId = value.FlightId, 
-                LandTime = value.LandTime, Source = value.Source, StatusId = value.StatusId, TakingOffTime = value.TakingOffTime };
-            await _flightService.AddAsync(flight);
+            //var flight = new Flight { AirplanId = value.AirplanId, Destination = value.Destination, FlightId = value.FlightId, 
+            //    LandTime = value.LandTime, Source = value.Source, StatusId = value.StatusId, TakingOffTime = value.TakingOffTime };
+            await _flightService.AddAsync(_mapper.Map<Flight>(flight));
             return Ok(flight);
         }
 

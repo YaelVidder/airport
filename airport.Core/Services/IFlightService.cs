@@ -14,7 +14,7 @@ namespace airport.Core.Services
 
         public Task AddAsync(Flight flight);
 
-        public Task UpdateAsync(int id,Flight flight);
+        public Task UpdateAsync(int id, Flight flight);
 
         public Task DeleteAsync(int id);
     }
