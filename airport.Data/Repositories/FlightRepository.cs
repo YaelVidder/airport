@@ -28,13 +28,18 @@ namespace airport.Data.Repositories
         public async Task<Flight> GetByIdAsync(int id)
         {
             return await _context.flights.Include(x => x.AirplanId)
-                .Include(x => x.StatusId).Include(x => x.CompanyId).FirstOrDefaultAsync(x => x.FlightId == id);
+                .Include(x => x.StatusId).Include(x => x.CompanyId)
+                .Include(x => x.SourceLocationId).Include(x => x.DestinationLocationId).
+                FirstOrDefaultAsync(x => x.FlightId == id);
         }
 
         public async Task AddAsync(Flight flight)
         {
-            _context.flights.Add(flight);
-            await _context.SaveChangesAsync();
+            if (flight.FlightId != (await GetByIdAsync(flight.FlightId)).FlightId)
+            {
+                _context.flights.Add(flight);
+                await _context.SaveChangesAsync();
+            }
         }
 
         public async Task UpdateAsync(int id, Flight flight)

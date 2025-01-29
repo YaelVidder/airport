@@ -63,6 +63,8 @@ namespace airport.Controllers
         {
             if (await _flightService.GetByIdAsync(flightId) == null)
                 return NotFound();
+            if(flightId != flight.FlightId)
+                return BadRequest();
             await _flightService.UpdateAsync(flightId, _mapper.Map<Flight>(flight));
             return Ok(flight);
         }
