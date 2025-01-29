@@ -10,19 +10,20 @@ namespace airport.Entities
         public int AirplanId { get; set; }
         public Airplane Airplane { get; set; }
 
-        [ForeignKey("SourceLocation")]
-        public int SourceLocationId { get; set; }
-
-        [ForeignKey("DestinationLocation")]
-        public int DestinationLocationId { get; set; }
+        //public int SourceLocationId { get; set; }
+         
+        //public int DestinationLocationId { get; set; }
         public int StatusId { get; set; }
         public DateOnly TakingOffTime { get; set; }
         public DateOnly LandTime { get; set; }
-        
-        public int CompanyId {  get; set; }
+
+        public int CompanyId { get; set; }
         public Company Company { get; set; }
         public Status status { get; set; }
-        public Location SourceLoation  { get; set; }
+
+        [ForeignKey("SourceLocation")]
+        public Location SourceLoation { get; set; }
+        [ForeignKey("DestinationLocation")]
         public Location DestinationLoation { get; set; }
 
     }
